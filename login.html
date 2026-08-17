@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>लॉगिन / साइन अप | THE MP BLAST</title>
+  <meta name="description" content="THE MP BLAST में सुरक्षित ईमेल OTP के माध्यम से लॉगिन या नया अकाउंट बनाएं।">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    /* ============================================================
+   THE MP BLAST — Design Tokens
+   ============================================================ */
+    :root {
+      --mpb-red: #E31E24;
+      --mpb-red-dark: #B0161B;
+      --mpb-black: #111111;
+      --mpb-dark-gray: #333333;
+      --mpb-mid-gray: #6B6B6B;
+      --mpb-light-gray: #F2F2F2;
+      --mpb-border-gray: #E2E2E2;
+      --mpb-white: #FFFFFF;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+
+      --font-head: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+      --font-body: 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .06);
+      --shadow-hover: 0 6px 16px rgba(0, 0, 0, .12);
+
+      --header-h: 58px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--mpb-black);
+      background: var(--mpb-white);
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      color: transparent;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .container-fluid.px-page {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    @media (min-width:768px) {
+      .container-fluid.px-page {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+    }
+
+    @media (min-width:1280px) {
+      .container-fluid.px-page {
+        padding-left: var(--space-7);
+        padding-right: var(--space-7);
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--mpb-red);
+      outline-offset: 2px;
+    }
+
+    /* ============================================================
+   Utility
+   ============================================================ */
+    .text-mpb-red {
+      color: var(--mpb-red) !important;
+    }
+
+    .bg-mpb-red {
+      background: var(--mpb-red) !important;
+    }
+
+    .text-meta {
+      color: var(--mpb-mid-gray);
+      font-size: 12.5px;
+    }
+
+    .badge-cat {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--mpb-black);
+      padding: 3px 9px;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge-cat.cat-politics {
+      background: #8a1c1c;
+    }
+
+    .badge-cat.cat-crime {
+      background: #212121;
+    }
+
+    .badge-cat.cat-education {
+      background: #1a5e3a;
+    }
+
+    .badge-cat.cat-business {
+      background: #1a4d8a;
+    }
+
+    .badge-cat.cat-sports {
+      background: #a15c00;
+    }
+
+    .badge-cat.cat-entertainment {
+      background: #6a1a8a;
+    }
+
+    .badge-cat.cat-national {
+      background: #333;
+    }
+
+    .badge-cat.cat-mp {
+      background: var(--mpb-red);
+    }
+
+    .badge-live {
+      background: var(--mpb-red);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-live .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .35;
+      }
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-4);
+      border-bottom: 3px solid var(--mpb-black);
+      padding-bottom: var(--space-2);
+    }
+
+    .section-heading h2 {
+      font-size: 19px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-heading h2 .bar {
+      width: 5px;
+      height: 20px;
+      background: var(--mpb-red);
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .section-heading .view-all {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mpb-red);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    @media (min-width:768px) {
+      .section-heading h2 {
+        font-size: 22px;
+      }
+    }
+
+    section.news-section {
+      padding: var(--space-6) 0;
+    }
+
+    section.news-section.alt-bg {
+      background: var(--mpb-light-gray);
+    }
+
+    .hover-lift {
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+
+    /* ============================================================
+   HEADER
+   ============================================================ */
+    .topbar {
+      background: var(--mpb-black);
+      color: #ddd;
+      font-size: 12px;
+    }
+
+    .topbar .container-fluid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 30px;
+    }
+
+    .topbar a {
+      color: #ddd;
+    }
+
+    .topbar .topbar-date {
+      color: #aaa;
+    }
+
+    .topbar .social-mini a {
+      margin-left: 10px;
+      font-size: 13px;
+    }
+
+    .topbar .social-mini a:hover {
+      color: var(--mpb-red);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      background: #fff;
+      border-bottom: 1px solid var(--mpb-border-gray);
+      height: var(--header-h);
+    }
+
+    .site-header .container-fluid {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo {
+      height: 36px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    @media (min-width:768px) {
+      .brand-logo {
+        height: 40px;
+        max-width: 170px;
+      }
+    }
+
+    @media (min-width:1024px) {
+      .brand-logo {
+        height: 42px;
+        max-width: 180px;
+      }
+    }
+
+    .offcanvas-logo {
+      height: 56px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+    }
+
+    footer.site-footer .brand-mark {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -.5px;
+    }
+
+    footer.site-footer .brand-mark .p-red {
+      color: var(--mpb-red);
+    }
+
+    .header-icon-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--mpb-black);
+      padding: 6px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .header-nav-desktop {
+      display: none;
+    }
+
+    @media (min-width:768px) {
+      .header-nav-desktop {
+        display: flex;
+        gap: 14px;
+      }
+
+      .header-nav-desktop a {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--mpb-dark-gray);
+        white-space: nowrap;
+      }
+
+      .header-nav-desktop a:hover {
+        color: var(--mpb-red);
+      }
+    }
+
+    @media (min-width:1024px) {
+      .header-nav-desktop {
+        gap: 22px;
+      }
+
+      .header-nav-desktop a {
+        font-size: 13.5px;
+      }
+    }
+
+    /* Offcanvas mobile nav */
+    .offcanvas-header {
+      border-bottom: 1px solid var(--mpb-border-gray);
+    }
+
+    .offcanvas-header .btn-close,
+    .modal .btn-close {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-position: center;
+    }
+
+    .mobile-nav .nav-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--mpb-black);
+      padding: 12px 4px;
+      border-bottom: 1px solid var(--mpb-border-gray);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-nav .nav-link i {
+      color: var(--mpb-mid-gray);
+      font-size: 14px;
+    }
+
+    /* ============================================================
+   BREAKING TICKER
+   ============================================================ */
+    .ticker-wrap {
+      background: var(--mpb-red);
+      color: #fff;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+      height: 44px;
+    }
+
+    .ticker-label {
+      background: var(--mpb-black);
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .ticker-label .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mpb-red);
+      animation: pulse 1.3s infinite;
+    }
+
+    .ticker-viewport {
+      flex: 1 1 auto;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 48px;
+      white-space: nowrap;
+      will-change: transform;
+      animation: ticker-scroll 32s linear infinite;
+      padding-left: 100%;
+    }
+
+    .ticker-wrap:hover .ticker-track,
+    .ticker-wrap:focus-within .ticker-track {
+      animation-play-state: paused;
+    }
+
+    .ticker-track a {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .ticker-track a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes ticker-scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .ticker-close {
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 0 14px;
+      font-size: 16px;
+      flex: 0 0 auto;
+      min-width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ============================================================
+   CARDS
+   ============================================================ */
+    .card-mpb {
+      background: #fff;
+      border: 1px solid var(--mpb-border-gray);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-mpb .thumb {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--mpb-light-gray);
+    }
+
+    .card-mpb .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-mpb .thumb .badge-cat {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+
+    .card-mpb .thumb .badge-live {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+
+    .card-mpb .body {
+      padding: var(--space-3) var(--space-3) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .card-mpb .headline {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.35;
+      color: var(--mpb-black);
+    }
+
+    .card-mpb .summary {
+      font-size: 13px;
+      color: var(--mpb-dark-gray);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-mpb .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 6px;
+      font-size: 12px;
+      color: var(--mpb-mid-gray);
+    }
+
+    .card-mpb .meta-row .loc {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-mpb .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .card-mpb .stat-row span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Featured / Hero */
+    .card-featured {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: 100%;
+      min-height: 260px;
+      display: flex;
+      align-items: flex-end;
+      background: var(--mpb-black);
+    }
+
+    .card-featured img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .82;
+    }
+
+    .card-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, .88) 100%);
+    }
+
+    .card-featured .body {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-4);
+      color: #fff;
+      width: 100%;
+    }
+
+    .card-featured .headline {
+      font-size: 19px;
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .card-featured .summary {
+      color: #e6e6e6;
+      font-size: 13px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-featured .meta-row {
+      color: #ddd;
+    }
+
+    @media (min-width:768px) {
+      .card-featured {
+        min-height: 380px;
+      }
+
+      .card-featured .headline {
+        font-size: 24px;
+      }
+    }
+
+    .card-featured-sub {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      min-height: 150px;
+      display: flex;
+      align-items: flex-end;
+      background: #222;
+    }
+
+    .card-featured-sub img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .85;
+    }
+
+    .card-featured-sub::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, .85) 100%);
+    }
+
+    .card-featured-sub .body {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-3);
+      color: #fff;
+    }
+
+    .card-featured-sub .headline {
+      font-size: 14px;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    /* Horizontal card */
+    .card-horizontal {
+      display: flex;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--mpb-border-gray);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      padding: 8px;
+    }
+
+    .card-horizontal .thumb {
+      flex: 0 0 96px;
+      width: 96px;
+      height: 76px;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      background: var(--mpb-light-gray);
+    }
+
+    .card-horizontal .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-horizontal .body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .card-horizontal .headline {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    @media (min-width:768px) {
+      .card-horizontal .thumb {
+        flex-basis: 120px;
+        width: 120px;
+        height: 88px;
+      }
+
+      .card-horizontal .headline {
+        font-size: 14.5px;
+      }
+    }
+
+
+    /* Breaking (ticker list style used in "most read" alt) */
+    .icon-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+
+    /* Send News CTA */
+    .send-news-banner {
+      background: var(--mpb-black);
+      border-radius: var(--radius-md);
+      padding: var(--space-6) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .send-news-banner::before {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(227, 30, 36, .35), transparent 70%);
+    }
+
+    .send-news-banner h3 {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .send-news-banner p {
+      color: #ccc;
+      font-size: 13.5px;
+      margin: 0;
+      max-width: 480px;
+    }
+
+    .btn-mpb-red {
+      background: var(--mpb-red);
+      border-color: var(--mpb-red);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 6px;
+    }
+
+    .btn-mpb-red:hover {
+      background: var(--mpb-red-dark);
+      border-color: var(--mpb-red-dark);
+      color: #fff;
+    }
+
+    .btn-mpb-outline {
+      border: 1.5px solid var(--mpb-border-gray);
+      color: var(--mpb-dark-gray);
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 18px;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .btn-mpb-outline:hover {
+      border-color: var(--mpb-black);
+      color: var(--mpb-black);
+    }
+
+    @media (min-width:768px) {
+      .send-news-banner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-6) var(--space-7);
+      }
+    }
+
+    /* ============================================================
+   FOOTER
+   ============================================================ */
+    footer.site-footer {
+      background: var(--mpb-black);
+      color: #bbb;
+      padding-top: var(--space-7);
+    }
+
+    footer.site-footer h6 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    footer.site-footer a {
+      color: #aaa;
+      font-size: 13.5px;
+    }
+
+    footer.site-footer a:hover {
+      color: var(--mpb-red);
+    }
+
+    footer.site-footer .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    footer.site-footer .social-row a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #444;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ddd;
+      margin-right: 8px;
+    }
+
+    footer.site-footer .social-row a:hover {
+      background: var(--mpb-red);
+      border-color: var(--mpb-red);
+      color: #fff;
+    }
+
+    footer.site-footer .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      margin-top: var(--space-6);
+      padding: var(--space-4) 64px var(--space-4) var(--space-4);
+      font-size: 12.5px;
+      color: #888;
+    }
+
+    footer.site-footer .footer-bottom a {
+      color: #999;
+    }
+
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--mpb-red);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+      z-index: 1020;
+      opacity: 0;
+      visibility: hidden;
+      transition: .2s ease;
+      border: none;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Section grid helpers */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (min-width:576px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .grid-auto {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+
+    @media (min-width:576px) {
+      .grid-auto {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4);
+      }
+    }
+
+    @media (min-width:1024px) {
+      .grid-auto {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  
+
+/* ============================================================
+   LOGIN / SIGNUP PAGE
+   ============================================================ */
+.auth-page {
+  min-height: calc(100vh - var(--header-h) - 44px);
+  padding: clamp(32px, 6vw, 72px) var(--space-4);
+  background:
+    linear-gradient(rgba(242,242,242,.82), rgba(242,242,242,.82)),
+    #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+
+.auth-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid var(--mpb-border-gray);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.auth-card-header {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid var(--mpb-border-gray);
+}
+
+.auth-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--mpb-red);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+
+.auth-title {
+  font-size: clamp(24px, 5vw, 30px);
+  line-height: 1.2;
+  margin-bottom: 7px;
+}
+
+.auth-subtitle {
+  margin: 0;
+  color: var(--mpb-mid-gray);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.auth-card-body {
+  padding: 24px 28px 28px;
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 24px;
+  background: var(--mpb-light-gray);
+  border-radius: 8px;
+}
+
+.auth-tab {
+  border: 0;
+  background: transparent;
+  color: var(--mpb-mid-gray);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.auth-tab.active {
+  background: #fff;
+  color: var(--mpb-black);
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.auth-step {
+  display: none;
+}
+
+.auth-step.active {
+  display: block;
+}
+
+.auth-form-group {
+  margin-bottom: 17px;
+}
+
+.auth-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.auth-input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--mpb-border-gray);
+  border-radius: 7px;
+  padding: 10px 13px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--mpb-black);
+  background: #fff;
+}
+
+.auth-input:focus {
+  border-color: var(--mpb-red);
+  outline: 2px solid rgba(227,30,36,.12);
+  outline-offset: 0;
+}
+
+.auth-input.is-invalid {
+  border-color: var(--mpb-red);
+}
+
+.auth-error {
+  display: none;
+  margin-top: 6px;
+  color: var(--mpb-red);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.auth-error.show {
+  display: block;
+}
+
+.auth-primary {
+  width: 100%;
+  min-height: 46px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--mpb-red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.auth-primary:hover {
+  background: var(--mpb-red-dark);
+}
+
+.auth-primary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.auth-secondary {
+  border: 1px solid var(--mpb-border-gray);
+  background: #fff;
+  color: var(--mpb-black);
+  border-radius: 7px;
+  min-height: 44px;
+  padding: 9px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.auth-actions > * {
+  flex: 1;
+}
+
+.auth-note {
+  margin-top: 14px;
+  color: var(--mpb-mid-gray);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.auth-demo {
+  margin-top: 14px;
+  border: 1px dashed var(--mpb-border-gray);
+  background: #fafafa;
+  border-radius: 7px;
+  padding: 10px 12px;
+  color: var(--mpb-mid-gray);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.auth-demo strong {
+  color: var(--mpb-black);
+}
+
+.otp-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 7px;
+  margin: 18px 0 10px;
+}
+
+.otp-digit {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 700;
+  border: 1px solid var(--mpb-border-gray);
+  border-radius: 7px;
+}
+
+.otp-digit:focus {
+  border-color: var(--mpb-red);
+  outline: 2px solid rgba(227,30,36,.12);
+}
+
+.otp-timer {
+  font-size: 12px;
+  color: var(--mpb-mid-gray);
+  text-align: center;
+  margin-top: 9px;
+}
+
+.otp-timer strong {
+  color: var(--mpb-red);
+}
+
+.auth-success {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+
+.auth-success-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf8f0;
+  color: #198754;
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.auth-success h2 {
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.auth-success p {
+  color: var(--mpb-mid-gray);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.account-box {
+  border: 1px solid var(--mpb-border-gray);
+  border-radius: 8px;
+  padding: 14px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.account-box-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.account-box-row + .account-box-row {
+  border-top: 1px solid var(--mpb-border-gray);
+}
+
+.account-box-label {
+  color: var(--mpb-mid-gray);
+}
+
+.account-box-value {
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.auth-legal {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--mpb-mid-gray);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.auth-legal a {
+  color: var(--mpb-red);
+}
+
+@media (max-width: 575.98px) {
+  .auth-page {
+    padding: 24px 12px 40px;
+  }
+
+  .auth-card-header,
+  .auth-card-body {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .auth-actions {
+    flex-direction: column;
+  }
+
+  .otp-grid {
+    gap: 5px;
+  }
+
+  .otp-digit {
+    height: 44px;
+    font-size: 17px;
+  }
+}
+
+
+<style>
+/* Login page uses the same index header/footer, with no district footer column. */
+.site-footer .row > .col-6.col-lg-3:last-child { }
+</style>
+
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="container-fluid px-page">
+<button aria-label="मेन्यू खोलें" class="header-icon-btn d-md-none" data-bs-target="#mobileNav" data-bs-toggle="offcanvas">
+<i class="bi bi-list"></i>
+</button>
+<a class="brand" href="index.html">
+<img alt="THE MP BLAST" class="brand-logo" src="data:image/png;base64,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"/>
+</a>
+<nav class="header-nav-desktop">
+<a href="index.html#hero">होम</a>
+<a href="index.html#mp-news">मध्य प्रदेश</a>
+<a href="index.html#politics">राजनीति</a>
+<a href="index.html#crime">अपराध</a>
+<a href="index.html#business">व्यापार</a>
+<a href="index.html#sports">खेल</a>
+<a href="index.html#entertainment">मनोरंजन</a>
+</nav>
+<a aria-label="लॉगिन" class="header-icon-btn" href="login.html" title="लॉगिन">
+<i aria-hidden="true" class="bi bi-person-circle"></i>
+</a>
+</div>
+</header>
+
+<!-- Breaking ticker is part of the index header ecosystem; kept with the shared header/footer structure. -->
+<div class="ticker-wrap" id="breakingTicker">
+  <div class="ticker-label"><span class="dot"></span> ब्रेकिंग</div>
+  <div class="ticker-viewport">
+    <div class="ticker-track" id="tickerTrack">
+      <a href="article.html">मध्य प्रदेश की ताज़ा खबरें और प्रमुख अपडेट पढ़ें</a>
+      <a href="article.html">स्थानीय समाचारों की नई जानकारी लगातार अपडेट की जा रही है</a>
+    </div>
+  </div>
+  <button type="button" class="ticker-close" id="tickerClose" aria-label="ब्रेकिंग न्यूज़ बंद करें">
+    <i class="bi bi-x-lg"></i>
+  </button>
+</div>
+
+
+<main id="main-content">
+  <section class="auth-page" aria-labelledby="auth-title">
+    <div class="auth-wrap">
+      <div class="auth-card">
+
+        <div class="auth-card-header">
+          <div class="auth-kicker">
+            <i class="bi bi-shield-check" aria-hidden="true"></i>
+            सुरक्षित प्रवेश
+          </div>
+          <h1 class="auth-title" id="auth-title">लॉगिन / साइन अप</h1>
+          <p class="auth-subtitle">
+            अपने ईमेल को OTP से सत्यापित करके THE MP BLAST में लॉगिन करें या नया अकाउंट बनाएं।
+          </p>
+        </div>
+
+        <div class="auth-card-body">
+
+          <div class="auth-tabs" role="tablist" aria-label="अकाउंट विकल्प">
+            <button type="button" class="auth-tab active" id="loginTab"
+                    role="tab" aria-selected="true" aria-controls="loginFlow">
+              लॉगिन
+            </button>
+            <button type="button" class="auth-tab" id="signupTab"
+                    role="tab" aria-selected="false" aria-controls="signupFlow">
+              साइन अप
+            </button>
+          </div>
+
+          <!-- Existing-user login flow -->
+          <div id="loginFlow">
+            <div class="auth-step active" id="loginEmailStep">
+              <form id="loginEmailForm" novalidate>
+                <div class="auth-form-group">
+                  <label for="loginEmail">ईमेल पता</label>
+                  <input type="email" id="loginEmail" class="auth-input"
+                         autocomplete="email" inputmode="email"
+                         placeholder="आपका ईमेल पता" required>
+                  <div class="auth-error" id="loginEmailError" role="alert"></div>
+                </div>
+                <button type="submit" class="auth-primary">ईमेल पर OTP भेजें</button>
+                <p class="auth-note">
+                  लॉगिन के लिए पासवर्ड की आवश्यकता नहीं है। हम आपके ईमेल पर एक OTP भेजकर पहचान सत्यापित करेंगे।
+                </p>
+              </form>
+            </div>
+
+            <div class="auth-step" id="loginOtpStep">
+              <p class="auth-subtitle">
+                OTP भेजा गया है: <strong id="loginOtpEmail"></strong>
+              </p>
+
+              <div class="otp-grid" id="loginOtpGrid">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 1">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 2">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 3">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 4">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 5">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 6">
+              </div>
+
+              <div class="auth-error" id="loginOtpError" role="alert"></div>
+
+              <button type="button" class="auth-primary" id="loginVerifyBtn">OTP सत्यापित करें</button>
+
+              <div class="otp-timer" id="loginTimer">OTP समाप्त होने में <strong>02:00</strong></div>
+
+              <div class="auth-actions">
+                <button type="button" class="auth-secondary" id="loginChangeEmail">ईमेल बदलें</button>
+                <button type="button" class="auth-secondary" id="loginResend" disabled>OTP फिर भेजें</button>
+              </div>
+
+              <div class="auth-demo" id="loginDemoBox" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <!-- New-user signup flow -->
+          <div id="signupFlow" class="d-none">
+            <div class="auth-step active" id="signupDetailsStep">
+              <form id="signupForm" novalidate>
+                <div class="auth-form-group">
+                  <label for="signupName">पूरा नाम</label>
+                  <input type="text" id="signupName" class="auth-input"
+                         autocomplete="name" placeholder="आपका पूरा नाम" required>
+                  <div class="auth-error" id="signupNameError" role="alert"></div>
+                </div>
+
+                <div class="auth-form-group">
+                  <label for="signupEmail">ईमेल पता</label>
+                  <input type="email" id="signupEmail" class="auth-input"
+                         autocomplete="email" inputmode="email"
+                         placeholder="आपका ईमेल पता" required>
+                  <div class="auth-error" id="signupEmailError" role="alert"></div>
+                </div>
+
+                <button type="submit" class="auth-primary">ईमेल पर OTP भेजें</button>
+
+                <p class="auth-note">
+                  साइन अप करने के लिए आपके नाम और ईमेल की आवश्यकता होगी। अकाउंट की पुष्टि OTP से की जाएगी।
+                </p>
+              </form>
+            </div>
+
+            <div class="auth-step" id="signupOtpStep">
+              <p class="auth-subtitle">
+                OTP भेजा गया है: <strong id="signupOtpEmail"></strong>
+              </p>
+
+              <div class="otp-grid" id="signupOtpGrid">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 1">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 2">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 3">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 4">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 5">
+                <input class="otp-digit" inputmode="numeric" maxlength="1" aria-label="OTP अंक 6">
+              </div>
+
+              <div class="auth-error" id="signupOtpError" role="alert"></div>
+
+              <button type="button" class="auth-primary" id="signupVerifyBtn">OTP सत्यापित करके अकाउंट बनाएं</button>
+
+              <div class="otp-timer" id="signupTimer">OTP समाप्त होने में <strong>02:00</strong></div>
+
+              <div class="auth-actions">
+                <button type="button" class="auth-secondary" id="signupChangeEmail">वापस जाएं</button>
+                <button type="button" class="auth-secondary" id="signupResend" disabled>OTP फिर भेजें</button>
+              </div>
+
+              <div class="auth-demo" id="signupDemoBox" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <!-- Logged-in state -->
+          <div class="auth-step" id="accountStep">
+            <div class="auth-success">
+              <div class="auth-success-icon">
+                <i class="bi bi-person-check-fill" aria-hidden="true"></i>
+              </div>
+              <h2>आप लॉगिन हैं</h2>
+              <p id="accountMessage">आपका अकाउंट सफलतापूर्वक सत्यापित हो गया है।</p>
+
+              <div class="account-box">
+                <div class="account-box-row">
+                  <span class="account-box-label">नाम</span>
+                  <span class="account-box-value" id="accountName">—</span>
+                </div>
+                <div class="account-box-row">
+                  <span class="account-box-label">ईमेल</span>
+                  <span class="account-box-value" id="accountEmail">—</span>
+                </div>
+              </div>
+
+              <div class="auth-actions">
+                <a href="index.html" class="auth-primary text-center d-flex align-items-center justify-content-center">
+                  होम पेज
+                </a>
+                <button type="button" class="auth-secondary" id="logoutBtn">लॉगआउट</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="auth-legal">
+            आगे बढ़कर आप हमारी
+            <a href="about.html#privacy-policy">गोपनीयता नीति</a>
+            और
+            <a href="about.html#terms-conditions">नियम व शर्तों</a>
+            से सहमत होते हैं।
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+<div class="container-fluid px-page">
+<div class="row g-4 pb-4">
+<div class="col-12 col-lg-4">
+<span class="brand-mark d-inline-flex mb-3"><span class="mp text-white">MP</span><span class="p-red">BLAST</span></span>
+<p class="small mb-3" style="max-width:260px;">मध्य प्रदेश की सबसे तेज़, निष्पक्ष और बेबाक न्यूज़ वेबसाइट। हर
+            खबर पर हमारी नजर।</p>
+<div class="social-row">
+<a aria-label="Instagram" href="#"><i class="bi bi-instagram"></i></a>
+<a aria-label="Facebook" href="#"><i class="bi bi-facebook"></i></a>
+<a aria-label="X / Twitter" href="#"><i class="bi bi-twitter-x"></i></a>
+<a aria-label="YouTube" href="#"><i class="bi bi-youtube"></i></a>
+</div>
+</div>
+<div class="col-6 col-lg-4">
+<h6>श्रेणियाँ</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="index.html#politics">राजनीति</a></li>
+<li><a href="index.html#crime">अपराध</a></li>
+<li><a href="index.html#education">शिक्षा व रोज़गार</a></li>
+<li><a href="index.html#business">व्यापार</a></li>
+<li><a href="index.html#sports">खेल</a></li>
+<li><a href="index.html#entertainment">मनोरंजन</a></li>
+</ul>
+</div>
+<div class="col-6 col-lg-4">
+<h6>कंपनी</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="about.html">हमारे बारे में</a></li>
+<li><a href="contact.html">संपर्क करें</a></li>
+<li><a href="contact.html">खबर भेजें</a></li>
+<li><a href="about.html#privacy-policy">गोपनीयता नीति</a></li>
+<li><a href="about.html#terms-conditions">नियम व शर्तें</a></li>
+<li><a href="about.html#disclaimer">डिस्क्लेमर</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom d-flex flex-column flex-md-row align-items-center justify-content-between gap-2 text-center text-md-start">
+<span>© 2026 THE MP BLAST. सर्वाधिकार सुरक्षित।</span>
+<span>Designed for a modern digital newsroom · मध्य प्रदेश</span>
+</div>
+</div>
+</footer>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="ऊपर जाएं">
+  <i class="bi bi-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* Shared page utilities needed by the index header/footer. */
+(function () {
+  const ticker = document.getElementById('breakingTicker');
+  const tickerClose = document.getElementById('tickerClose');
+  if (ticker && tickerClose) {
+    tickerClose.addEventListener('click', () => ticker.remove());
+  }
+
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 420);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const USER_KEY = 'mpblast_user';
+  const OTP_PREFIX = 'mpblast_auth_';
+  const OTP_TTL = 120000;
+  const MAX_ATTEMPTS = 5;
+  const RESEND_COOLDOWN = 30;
+
+  const $ = (id) => document.getElementById(id);
+
+  const loginTab = $('loginTab');
+  const signupTab = $('signupTab');
+  const loginFlow = $('loginFlow');
+  const signupFlow = $('signupFlow');
+
+  const loginEmailForm = $('loginEmailForm');
+  const loginEmail = $('loginEmail');
+  const loginEmailError = $('loginEmailError');
+  const loginEmailStep = $('loginEmailStep');
+  const loginOtpStep = $('loginOtpStep');
+  const loginOtpEmail = $('loginOtpEmail');
+  const loginOtpError = $('loginOtpError');
+  const loginVerifyBtn = $('loginVerifyBtn');
+  const loginChangeEmail = $('loginChangeEmail');
+  const loginResend = $('loginResend');
+  const loginTimer = $('loginTimer');
+  const loginDemoBox = $('loginDemoBox');
+  const loginOtpInputs = [...document.querySelectorAll('#loginOtpGrid .otp-digit')];
+
+  const signupForm = $('signupForm');
+  const signupName = $('signupName');
+  const signupEmail = $('signupEmail');
+  const signupNameError = $('signupNameError');
+  const signupEmailError = $('signupEmailError');
+  const signupDetailsStep = $('signupDetailsStep');
+  const signupOtpStep = $('signupOtpStep');
+  const signupOtpEmail = $('signupOtpEmail');
+  const signupOtpError = $('signupOtpError');
+  const signupVerifyBtn = $('signupVerifyBtn');
+  const signupChangeEmail = $('signupChangeEmail');
+  const signupResend = $('signupResend');
+  const signupTimer = $('signupTimer');
+  const signupDemoBox = $('signupDemoBox');
+  const signupOtpInputs = [...document.querySelectorAll('#signupOtpGrid .otp-digit')];
+
+  const accountStep = $('accountStep');
+  const accountName = $('accountName');
+  const accountEmail = $('accountEmail');
+  const accountMessage = $('accountMessage');
+  const logoutBtn = $('logoutBtn');
+
+  let loginState = null;
+  let signupState = null;
+  let loginTimerId = null;
+  let signupTimerId = null;
+
+  function readUser() {
+    try {
+      return JSON.parse(sessionStorage.getItem(USER_KEY) || 'null');
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function saveUser(user) {
+    sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  function clearUser() {
+    sessionStorage.removeItem(USER_KEY);
+  }
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function setError(input, box, message) {
+    input.classList.toggle('is-invalid', Boolean(message));
+    box.textContent = message || '';
+    box.classList.toggle('show', Boolean(message));
+  }
+
+  function clearErrors() {
+    [loginEmail, signupName, signupEmail].forEach((input) => input.classList.remove('is-invalid'));
+    [loginEmailError, signupNameError, signupEmailError, loginOtpError, signupOtpError]
+      .forEach((box) => {
+        box.textContent = '';
+        box.classList.remove('show');
+      });
+  }
+
+  function activateTab(mode) {
+    const loginActive = mode === 'login';
+
+    loginTab.classList.toggle('active', loginActive);
+    signupTab.classList.toggle('active', !loginActive);
+    loginTab.setAttribute('aria-selected', String(loginActive));
+    signupTab.setAttribute('aria-selected', String(!loginActive));
+
+    loginFlow.classList.toggle('d-none', !loginActive);
+    signupFlow.classList.toggle('d-none', loginActive);
+
+    clearErrors();
+
+    if (loginActive) {
+      loginEmail.focus();
+    } else {
+      signupName.focus();
+    }
+  }
+
+  function showLoginEmail() {
+    loginEmailStep.classList.add('active');
+    loginOtpStep.classList.remove('active');
+    clearOtpInputs(loginOtpInputs);
+    clearInterval(loginTimerId);
+    loginResend.disabled = true;
+    loginEmail.focus();
+  }
+
+  function showLoginOtp() {
+    loginEmailStep.classList.remove('active');
+    loginOtpStep.classList.add('active');
+    loginOtpInputs[0].focus();
+  }
+
+  function showSignupDetails() {
+    signupDetailsStep.classList.add('active');
+    signupOtpStep.classList.remove('active');
+    clearOtpInputs(signupOtpInputs);
+    clearInterval(signupTimerId);
+    signupResend.disabled = true;
+    signupName.focus();
+  }
+
+  function showSignupOtp() {
+    signupDetailsStep.classList.remove('active');
+    signupOtpStep.classList.add('active');
+    signupOtpInputs[0].focus();
+  }
+
+  function showAccount(user, message) {
+    loginFlow.classList.add('d-none');
+    signupFlow.classList.add('d-none');
+    document.querySelector('.auth-tabs').classList.add('d-none');
+    accountStep.classList.add('active');
+
+    accountName.textContent = user.name || '—';
+    accountEmail.textContent = user.email || '—';
+    accountMessage.textContent = message || 'आपका अकाउंट सफलतापूर्वक सत्यापित हो गया है।';
+  }
+
+  function resetAuthUI() {
+    document.querySelector('.auth-tabs').classList.remove('d-none');
+    accountStep.classList.remove('active');
+    activateTab('login');
+    showLoginEmail();
+    showSignupDetails();
+  }
+
+  function clearOtpInputs(inputs) {
+    inputs.forEach((input) => input.value = '');
+  }
+
+  function otpFrom(inputs) {
+    return inputs.map((input) => input.value).join('');
+  }
+
+  function wireOtpInputs(inputs) {
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/\D/g, '').slice(0, 1);
+        if (input.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Backspace' && !input.value && index > 0) {
+          inputs[index - 1].focus();
+        }
+        if (event.key === 'ArrowLeft' && index > 0) inputs[index - 1].focus();
+        if (event.key === 'ArrowRight' && index < inputs.length - 1) inputs[index + 1].focus();
+      });
+
+      input.addEventListener('paste', (event) => {
+        event.preventDefault();
+        const digits = (event.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+        digits.split('').forEach((digit, i) => {
+          if (inputs[i]) inputs[i].value = digit;
+        });
+        const focusIndex = Math.min(digits.length, inputs.length - 1);
+        inputs[focusIndex].focus();
+      });
+    });
+  }
+
+  function createOtp() {
+    const array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return String(array[0] % 1000000).padStart(6, '0');
+  }
+
+  function startCountdown(timerEl, resendBtn, onExpire) {
+    const startedAt = Date.now();
+    resendBtn.disabled = true;
+
+    const tick = () => {
+      const remaining = Math.max(0, OTP_TTL - (Date.now() - startedAt));
+      const seconds = Math.ceil(remaining / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+
+      timerEl.innerHTML = `OTP समाप्त होने में <strong>${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}</strong>`;
+
+      if (remaining <= 0) {
+        clearInterval(timerEl._timerId);
+        resendBtn.disabled = false;
+        timerEl.innerHTML = 'OTP की समय-सीमा समाप्त हो गई है। <strong>नया OTP भेजें</strong>';
+        if (onExpire) onExpire();
+      }
+    };
+
+    clearInterval(timerEl._timerId);
+    timerEl._timerId = setInterval(tick, 250);
+    tick();
+  }
+
+  function beginOtp(mode, email) {
+    const otp = createOtp();
+    const state = {
+      email: email.toLowerCase(),
+      otp,
+      expiresAt: Date.now() + OTP_TTL,
+      attempts: 0,
+      lastSentAt: Date.now()
+    };
+
+    if (mode === 'login') {
+      loginState = state;
+      loginOtpEmail.textContent = email;
+      loginDemoBox.innerHTML = '<strong>डेमो OTP:</strong> ' + otp + ' — वास्तविक वेबसाइट में यह OTP ईमेल से भेजा जाएगा।';
+      showLoginOtp();
+      startCountdown(loginTimer, loginResend);
+    } else {
+      signupState = state;
+      signupOtpEmail.textContent = email;
+      signupDemoBox.innerHTML = '<strong>डेमो OTP:</strong> ' + otp + ' — वास्तविक वेबसाइट में यह OTP ईमेल से भेजा जाएगा।';
+      showSignupOtp();
+      startCountdown(signupTimer, signupResend);
+    }
+  }
+
+  function verifyOtp(mode) {
+    const state = mode === 'login' ? loginState : signupState;
+    const inputs = mode === 'login' ? loginOtpInputs : signupOtpInputs;
+    const error = mode === 'login' ? loginOtpError : signupOtpError;
+
+    if (!state) return;
+
+    if (Date.now() > state.expiresAt) {
+      error.textContent = 'OTP की समय-सीमा समाप्त हो गई है। नया OTP भेजें।';
+      error.classList.add('show');
+      return;
+    }
+
+    const entered = otpFrom(inputs);
+    if (!/^\d{6}$/.test(entered)) {
+      error.textContent = 'कृपया 6 अंकों का OTP दर्ज करें।';
+      error.classList.add('show');
+      return;
+    }
+
+    if (entered !== state.otp) {
+      state.attempts += 1;
+      const remaining = MAX_ATTEMPTS - state.attempts;
+
+      if (remaining <= 0) {
+        error.textContent = 'अधिकतम प्रयास पूरे हो गए हैं। कृपया नया OTP भेजें।';
+      } else {
+        error.textContent = `गलत OTP। ${remaining} प्रयास शेष हैं।`;
+      }
+
+      error.classList.add('show');
+      return;
+    }
+
+    error.classList.remove('show');
+
+    if (mode === 'login') {
+      const existing = readUser();
+      const user = existing && existing.email === state.email
+        ? existing
+        : { name: 'उपयोगकर्ता', email: state.email, createdAt: new Date().toISOString() };
+
+      saveUser(user);
+      showAccount(user, 'आपके ईमेल की पुष्टि हो गई है और आप सफलतापूर्वक लॉगिन हैं।');
+    } else {
+      const user = {
+        name: signupName.value.trim(),
+        email: state.email,
+        createdAt: new Date().toISOString()
+      };
+
+      saveUser(user);
+      showAccount(user, 'आपका नया अकाउंट सफलतापूर्वक बन गया है और आप लॉगिन हैं।');
+    }
+  }
+
+  loginEmailForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = loginEmail.value.trim();
+
+    setError(loginEmail, loginEmailError, '');
+
+    if (!isValidEmail(email)) {
+      setError(loginEmail, loginEmailError, 'कृपया मान्य ईमेल पता दर्ज करें।');
+      loginEmail.focus();
+      return;
+    }
+
+    beginOtp('login', email);
+  });
+
+  signupForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = signupName.value.trim();
+    const email = signupEmail.value.trim();
+    let valid = true;
+
+    if (name.length < 2) {
+      setError(signupName, signupNameError, 'कृपया कम से कम 2 अक्षरों का नाम दर्ज करें।');
+      valid = false;
+    } else {
+      setError(signupName, signupNameError, '');
+    }
+
+    if (!isValidEmail(email)) {
+      setError(signupEmail, signupEmailError, 'कृपया मान्य ईमेल पता दर्ज करें।');
+      valid = false;
+    } else {
+      setError(signupEmail, signupEmailError, '');
+    }
+
+    if (!valid) return;
+
+    beginOtp('signup', email);
+  });
+
+  loginVerifyBtn.addEventListener('click', () => verifyOtp('login'));
+  signupVerifyBtn.addEventListener('click', () => verifyOtp('signup'));
+
+  loginChangeEmail.addEventListener('click', showLoginEmail);
+  signupChangeEmail.addEventListener('click', showSignupDetails);
+
+  loginResend.addEventListener('click', () => {
+    if (loginState) beginOtp('login', loginState.email);
+  });
+
+  signupResend.addEventListener('click', () => {
+    if (signupState) beginOtp('signup', signupState.email);
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    clearUser();
+    loginState = null;
+    signupState = null;
+    clearInterval(loginTimerId);
+    clearInterval(signupTimerId);
+    document.querySelector('.auth-tabs').classList.remove('d-none');
+    accountStep.classList.remove('active');
+    activateTab('login');
+    showLoginEmail();
+  });
+
+  loginTab.addEventListener('click', () => activateTab('login'));
+  signupTab.addEventListener('click', () => activateTab('signup'));
+
+  wireOtpInputs(loginOtpInputs);
+  wireOtpInputs(signupOtpInputs);
+
+  const savedUser = readUser();
+  if (savedUser && savedUser.email) {
+    showAccount(savedUser, 'आपका पिछला लॉगिन सत्र इस ब्राउज़र में सुरक्षित है।');
+  } else {
+    activateTab('login');
+    showLoginEmail();
+    showSignupDetails();
+  }
+})();
+</script>
+
+
+</body>
+</html>
