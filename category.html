@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>THE MP BLAST | हर खबर पर हमारी नजर</title>
+  <title>श्रेणियाँ | THE MP BLAST</title>
   <meta name="description"
-    content="THE MP BLAST — मध्य प्रदेश की सबसे तेज़ और निष्पक्ष न्यूज़ वेबसाइट। राजनीति, अपराध, शिक्षा, व्यापार, खेल और मनोरंजन की हर खबर।">
+    content="THE MP BLAST — विषयवार मध्य प्रदेश और राष्ट्रीय समाचार।">
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -1000,15 +999,73 @@
         scroll-behavior: auto !important;
       }
     }
+  
+    /* ============================================================
+       CATEGORY PAGE
+       ============================================================ */
+    .category-page {
+      padding: var(--space-7) 0 var(--space-8);
+    }
+
+    .category-intro {
+      margin-bottom: var(--space-5);
+    }
+
+    .category-intro h1 {
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .category-intro p {
+      color: var(--mpb-mid-gray);
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 10px;
+      scrollbar-width: thin;
+      margin-bottom: var(--space-5);
+    }
+
+    .category-tab {
+      flex: 0 0 auto;
+      border: 1px solid var(--mpb-border-gray);
+      background: #fff;
+      color: var(--mpb-dark-gray);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .category-tab:hover,
+    .category-tab.active {
+      background: var(--mpb-red);
+      border-color: var(--mpb-red);
+      color: #fff;
+    }
+
+    .category-count {
+      color: var(--mpb-mid-gray);
+      font-size: 13px;
+      margin-bottom: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .category-intro h1 {
+        font-size: 34px;
+      }
+    }
+
   </style>
 </head>
-
 <body>
-
-  <!-- =============== SKIP LINK =============== -->
-  <a href="#main-content" class="visually-hidden-focusable position-absolute top-0 start-0 bg-white p-2 z-3">मुख्य
-    सामग्री पर जाएं</a>
-
   <!-- =============== TOP BAR (desktop) =============== -->
   <div class="topbar d-none d-lg-block">
     <div class="container-fluid px-page">
@@ -1041,13 +1098,13 @@
       </a>
 
       <nav class="header-nav-desktop">
-        <a href="#hero">होम</a>
-        <a href="#hero">मध्य प्रदेश</a>
-        <a href="#politics">राजनीति</a>
-        <a href="#crime">अपराध</a>
-        <a href="#business">व्यापार</a>
-        <a href="#sports">खेल</a>
-        <a href="#entertainment">मनोरंजन</a>
+        <a href="index.html#hero">होम</a>
+        <a href="index.html#hero">मध्य प्रदेश</a>
+        <a href="index.html#politics">राजनीति</a>
+        <a href="index.html#crime">अपराध</a>
+        <a href="index.html#business">व्यापार</a>
+        <a href="index.html#sports">खेल</a>
+        <a href="index.html#entertainment">मनोरंजन</a>
       </nav>
       <a href="login.html" class="header-icon-btn" aria-label="लॉगिन" title="लॉगिन">
         <i class="bi bi-person-circle" aria-hidden="true"></i>
@@ -1068,20 +1125,20 @@
     </div>
     <div class="offcanvas-body">
       <nav class="mobile-nav mb-4">
-        <a href="#hero" class="nav-link" data-bs-dismiss="offcanvas">होम <i class="bi bi-chevron-left"></i></a>
-        <a href="#latest" class="nav-link" data-bs-dismiss="offcanvas">ताज़ा खबरें <i
+        <a href="index.html#hero" class="nav-link" data-bs-dismiss="offcanvas">होम <i class="bi bi-chevron-left"></i></a>
+        <a href="index.html#latest" class="nav-link" data-bs-dismiss="offcanvas">ताज़ा खबरें <i
             class="bi bi-chevron-left"></i></a>
-        <a href="#hero" class="nav-link" data-bs-dismiss="offcanvas">मध्य प्रदेश <i
+        <a href="index.html#hero" class="nav-link" data-bs-dismiss="offcanvas">मध्य प्रदेश <i
             class="bi bi-chevron-left"></i></a>
-        <a href="#national" class="nav-link" data-bs-dismiss="offcanvas">राष्ट्रीय <i
+        <a href="index.html#national" class="nav-link" data-bs-dismiss="offcanvas">राष्ट्रीय <i
             class="bi bi-chevron-left"></i></a>
-        <a href="#politics" class="nav-link" data-bs-dismiss="offcanvas">राजनीति <i class="bi bi-chevron-left"></i></a>
-        <a href="#crime" class="nav-link" data-bs-dismiss="offcanvas">अपराध <i class="bi bi-chevron-left"></i></a>
-        <a href="#education" class="nav-link" data-bs-dismiss="offcanvas">शिक्षा व नौकरी <i
+        <a href="index.html#politics" class="nav-link" data-bs-dismiss="offcanvas">राजनीति <i class="bi bi-chevron-left"></i></a>
+        <a href="index.html#crime" class="nav-link" data-bs-dismiss="offcanvas">अपराध <i class="bi bi-chevron-left"></i></a>
+        <a href="index.html#education" class="nav-link" data-bs-dismiss="offcanvas">शिक्षा व नौकरी <i
             class="bi bi-chevron-left"></i></a>
-        <a href="#business" class="nav-link" data-bs-dismiss="offcanvas">व्यापार <i class="bi bi-chevron-left"></i></a>
-        <a href="#sports" class="nav-link" data-bs-dismiss="offcanvas">खेल <i class="bi bi-chevron-left"></i></a>
-        <a href="#entertainment" class="nav-link" data-bs-dismiss="offcanvas">मनोरंजन <i
+        <a href="index.html#business" class="nav-link" data-bs-dismiss="offcanvas">व्यापार <i class="bi bi-chevron-left"></i></a>
+        <a href="index.html#sports" class="nav-link" data-bs-dismiss="offcanvas">खेल <i class="bi bi-chevron-left"></i></a>
+        <a href="index.html#entertainment" class="nav-link" data-bs-dismiss="offcanvas">मनोरंजन <i
             class="bi bi-chevron-left"></i></a>
       </nav>
       <div class="d-flex gap-2 mb-3">
@@ -1107,129 +1164,32 @@
         class="bi bi-x-lg"></i></button>
   </div>
 
+
   <main id="main-content">
-    <h1 class="visually-hidden">THE MP BLAST — हर खबर पर हमारी नजर | मध्य प्रदेश की ताज़ा खबरें</h1>
-
-    <!-- =============== HERO / FEATURED =============== -->
-    <section id="hero" class="news-section pt-4">
+    <section class="category-page">
       <div class="container-fluid px-page">
-        <div class="row g-3">
-          <div class="col-12 col-lg-8">
-            <div id="heroFeaturedSlot"></div>
-          </div>
-          <div class="col-12 col-lg-4">
-            <div class="grid-2 h-100" style="grid-template-columns:1fr;" id="heroSubSlot"></div>
-          </div>
+        <div class="category-intro">
+          <h1 id="categoryTitle">सभी खबरें</h1>
+          <p id="categoryDescription">THE MP BLAST की विषयवार ताज़ा खबरें एक ही जगह।</p>
         </div>
+
+        <nav class="category-tabs" aria-label="समाचार श्रेणियाँ">
+          <a class="category-tab" data-category="all" href="category.html">सभी खबरें</a>
+          <a class="category-tab" data-category="national" href="category.html?category=national">राष्ट्रीय</a>
+          <a class="category-tab" data-category="politics" href="category.html?category=politics">राजनीति</a>
+          <a class="category-tab" data-category="crime" href="category.html?category=crime">अपराध</a>
+          <a class="category-tab" data-category="education" href="category.html?category=education">शिक्षा व रोज़गार</a>
+          <a class="category-tab" data-category="business" href="category.html?category=business">व्यापार</a>
+          <a class="category-tab" data-category="sports" href="category.html?category=sports">खेल</a>
+          <a class="category-tab" data-category="entertainment" href="category.html?category=entertainment">मनोरंजन</a>
+          <a class="category-tab" data-category="mp" href="category.html?category=mp">मध्य प्रदेश</a>
+        </nav>
+
+        <div class="category-count" id="categoryCount"></div>
+        <div class="grid-auto" id="categoryNewsSlot"></div>
       </div>
     </section>
-
-    <!-- =============== LATEST NEWS =============== -->
-    <section id="latest" class="news-section">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>ताज़ा खबरें</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="grid-auto" id="latestNewsSlot"></div>
-      </div>
-    </section>
-
-
-    <!-- =============== NATIONAL NEWS =============== -->
-    <section id="national" class="news-section alt-bg">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>राष्ट्रीय समाचार</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="grid-auto" id="nationalSlot"></div>
-      </div>
-    </section>
-
-    <!-- =============== POLITICS =============== -->
-    <section id="politics" class="news-section">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>राजनीति</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="row g-3" id="politicsSlot"></div>
-      </div>
-    </section>
-
-    <!-- =============== CRIME =============== -->
-    <section id="crime" class="news-section alt-bg">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>अपराध</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="row g-3" id="crimeSlot"></div>
-      </div>
-    </section>
-
-    <!-- =============== EDUCATION & JOBS =============== -->
-    <section id="education" class="news-section">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>शिक्षा व रोज़गार</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="row g-3" id="educationSlot"></div>
-      </div>
-    </section>
-
-    <!-- =============== BUSINESS =============== -->
-    <section id="business" class="news-section alt-bg">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>व्यापार</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="row g-3" id="businessSlot"></div>
-      </div>
-    </section>
-
-    <!-- =============== SPORTS =============== -->
-    <section id="sports" class="news-section">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>खेल</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="row g-3" id="sportsSlot"></div>
-      </div>
-    </section>
-
-    <!-- =============== ENTERTAINMENT =============== -->
-    <section id="entertainment" class="news-section alt-bg">
-      <div class="container-fluid px-page">
-        <div class="section-heading">
-          <h2><span class="bar"></span>मनोरंजन</h2>
-          <a href="category.html" class="view-all">सभी देखें <i class="bi bi-chevron-left"></i></a>
-        </div>
-        <div class="row g-3" id="entertainmentSlot"></div>
-      </div>
-    </section>
-
-
-    <section class="news-section">
-      <div class="container-fluid px-page">
-        <div class="send-news-banner">
-          <div>
-            <h3><i class="bi bi-broadcast text-mpb-red me-2"></i>आपके पास कोई खबर है?</h3>
-            <p>अपने क्षेत्र की खबर, फोटो या वीडियो हमें भेजें — हम उसे सत्यापित कर आपके नाम के साथ प्रकाशित करेंगे।</p>
-          </div>
-          <div class="d-flex gap-2 flex-shrink-0">
-            <a href="contact.html" class="btn btn-mpb-red"><i class="bi bi-send-fill me-1"></i>खबर भेजें</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
-
   <!-- =============== FOOTER =============== -->
   <footer class="site-footer">
     <div class="container-fluid px-page">
@@ -1249,12 +1209,12 @@
         <div class="col-6 col-lg-4">
           <h6>श्रेणियाँ</h6>
           <ul class="list-unstyled footer-links">
-            <li><a href="#politics">राजनीति</a></li>
-            <li><a href="#crime">अपराध</a></li>
-            <li><a href="#education">शिक्षा व रोज़गार</a></li>
-            <li><a href="#business">व्यापार</a></li>
-            <li><a href="#sports">खेल</a></li>
-            <li><a href="#entertainment">मनोरंजन</a></li>
+            <li><a href="index.html#politics">राजनीति</a></li>
+            <li><a href="index.html#crime">अपराध</a></li>
+            <li><a href="index.html#education">शिक्षा व रोज़गार</a></li>
+            <li><a href="index.html#business">व्यापार</a></li>
+            <li><a href="index.html#sports">खेल</a></li>
+            <li><a href="index.html#entertainment">मनोरंजन</a></li>
           </ul>
         </div>
 
@@ -1282,28 +1242,35 @@
   <button type="button" class="back-to-top" id="backToTop" aria-label="ऊपर जाएं"><i class="bi bi-arrow-up"></i></button>
 
 
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="ऊपर जाएं"><i class="bi bi-arrow-up"></i></button>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    /* Prevent placeholder href="#" links (features/pages not yet built) from
-       jumping the page to top. Real navigation/anchor links are unaffected. */
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a[href="#"]');
       if (a) e.preventDefault();
     });
-  </script>
 
-  <script>
-    /* ============================================================
-       THE MP BLAST — Mock Data
-       ============================================================ */
+    const CATEGORY_META = {
+      all: { title: 'सभी खबरें', description: 'THE MP BLAST की सभी प्रमुख और ताज़ा खबरें एक ही जगह।' },
+      national: { title: 'राष्ट्रीय समाचार', description: 'देशभर से जुड़ी प्रमुख राष्ट्रीय खबरें।' },
+      politics: { title: 'राजनीति', description: 'मध्य प्रदेश और देश की प्रमुख राजनीतिक खबरें।' },
+      crime: { title: 'अपराध', description: 'अपराध, पुलिस और कानून-व्यवस्था से जुड़ी खबरें।' },
+      education: { title: 'शिक्षा व रोज़गार', description: 'शिक्षा, परीक्षा, भर्ती और रोज़गार से जुड़ी खबरें।' },
+      business: { title: 'व्यापार', description: 'व्यापार, उद्योग, बाजार और अर्थव्यवस्था से जुड़ी खबरें।' },
+      sports: { title: 'खेल', description: 'खेल जगत की प्रमुख खबरें और अपडेट।' },
+      entertainment: { title: 'मनोरंजन', description: 'फिल्म, संस्कृति और मनोरंजन जगत की खबरें।' },
+      mp: { title: 'मध्य प्रदेश', description: 'मध्य प्रदेश के अलग-अलग जिलों से जुड़ी प्रमुख खबरें।' }
+    };
 
     function img(seed, w, h) { return `https://picsum.photos/seed/${seed}/${w || 600}/${h || 400}`; }
-
     let uid = 1;
     function n(data) { return Object.assign({ id: uid++, views: 0, timestamp: "2 घंटे पहले" }, data); }
 
     const NEWS = [
+
       n({ headline: "इंदौर में मेट्रो रेल परियोजना का दूसरा चरण शुरू, यात्रियों को मिलेगी बड़ी राहत", summary: "शहर के प्रमुख मार्गों को जोड़ने वाली मेट्रो लाइन का निर्माण कार्य तेज़ी से जारी है, अगले वर्ष तक पूरा होने की उम्मीद।", image: img("indore-metro", 900, 600), category: "mp", catLabel: "मध्य प्रदेश", district: "इंदौर", isBreaking: true, isFeatured: true, views: 15200, timestamp: "32 मिनट पहले" }),
       n({ headline: "भोपाल में नई आईटी पार्क योजना को मिली मंजूरी, हज़ारों को मिलेगा रोज़गार", summary: "राज्य सरकार ने निवेश को बढ़ावा देने के लिए भोपाल में नए आईटी पार्क की स्थापना को हरी झंडी दी है।", image: img("bhopal-it", 900, 600), category: "mp", catLabel: "मध्य प्रदेश", district: "भोपाल", isFeatured: true, views: 9800, timestamp: "1 घंटा पहले" }),
       n({ headline: "उज्जैन महाकाल मंदिर में श्रावण मास पर उमड़ा श्रद्धालुओं का सैलाब", summary: "मंदिर प्रशासन ने भीड़ प्रबंधन के लिए विशेष व्यवस्था की है, दर्शन का समय बढ़ाया गया।", image: img("ujjain-temple", 900, 600), category: "mp", catLabel: "मध्य प्रदेश", district: "उज्जैन", isFeatured: true, views: 22100, timestamp: "3 घंटे पहले" }),
@@ -1343,10 +1310,6 @@
       n({ headline: "भारतीय अर्थव्यवस्था की वृद्धि दर उम्मीद से बेहतर रही: रिपोर्ट", summary: "विशेषज्ञों ने आगामी तिमाही के लिए भी सकारात्मक अनुमान जताया।", image: img("economy", 700, 470), category: "national", catLabel: "राष्ट्रीय", district: "मुंबई", timestamp: "7 घंटे पहले", views: 7300 }),
     ];
 
-
-    /* ============================================================
-       Utils
-       ============================================================ */
     function fmtNum(num) {
       if (num >= 100000) return (num / 100000).toFixed(1).replace('.0', '') + 'L';
       if (num >= 1000) return (num / 1000).toFixed(1).replace('.0', '') + 'K';
@@ -1354,137 +1317,26 @@
     }
     function catClass(cat) { return `cat-${cat}`; }
 
-    /* ============================================================
-       Card templates
-       ============================================================ */
     function tplStandard(item) {
       return `
-  <a href="#" class="card-mpb hover-lift text-decoration-none">
-    <div class="thumb">
-      <img src="${item.image}" alt="${item.headline}" loading="lazy">
-      <span class="badge-cat ${catClass(item.category)}">${item.catLabel}</span>
-      ${item.isBreaking ? `<span class="badge-live"><span class="dot"></span>LIVE</span>` : ``}
-    </div>
-    <div class="body">
-      <h3 class="headline">${item.headline}</h3>
-      <p class="summary">${item.summary || ''}</p>
-      <div class="meta-row">
-        <span class="loc"><i class="bi bi-geo-alt"></i>${item.district}</span>
-        <span>${item.timestamp}</span>
-      </div>
-      <div class="meta-row">
-        <span class="stat-row">
-          <span><i class="bi bi-eye-fill"></i> ${fmtNum(item.views)}</span>
-        </span>
-      </div>
-    </div>
-  </a>`;
-    }
-
-    function tplHorizontal(item) {
-      return `
-  <a href="#" class="card-horizontal hover-lift text-decoration-none">
-    <div class="thumb"><img src="${item.image}" alt="${item.headline}" loading="lazy"></div>
-    <div class="body">
-      <span class="badge-cat ${catClass(item.category)}" style="align-self:flex-start;">${item.catLabel}</span>
-      <h3 class="headline">${item.headline}</h3>
-      <div class="meta-row">
-        <span class="loc"><i class="bi bi-geo-alt"></i>${item.district}</span>
-        <span>${item.timestamp}</span>
-      </div>
-    </div>
-  </a>`;
-    }
-
-
-    function tplFeaturedMain(item) {
-      return `
-  <div class="card-featured">
-    <img src="${item.image}" alt="${item.headline}">
-    <div class="body">
-      <span class="badge-cat ${catClass(item.category)} mb-2 d-inline-block">${item.catLabel}</span>
-      <h2 class="headline">${item.headline}</h2>
-      <p class="summary">${item.summary}</p>
-      <div class="meta-row">
-        <span class="loc"><i class="bi bi-geo-alt"></i>${item.district}</span>
-        <span class="stat-row">
-          <span><i class="bi bi-eye-fill"></i> ${fmtNum(item.views)}</span>
-        </span>
-      </div>
-    </div>
-  </div>`;
-    }
-
-    function tplFeaturedSub(item) {
-      return `
-  <a href="#" class="card-featured-sub text-decoration-none" style="min-height:120px;">
-    <img src="${item.image}" alt="${item.headline}">
-    <div class="body">
-      <span class="badge-cat ${catClass(item.category)} mb-1 d-inline-block">${item.catLabel}</span>
-      <h3 class="headline">${item.headline}</h3>
-    </div>
-  </a>`;
-    }
-
-    /* ============================================================
-       Render logic
-       ============================================================ */
-    function byCategory(cat, limit) {
-      const arr = NEWS.filter(x => x.category === cat);
-      return limit ? arr.slice(0, limit) : arr;
-    }
-
-    function renderHero() {
-      const featured = NEWS.filter(x => x.isFeatured);
-      document.getElementById('heroFeaturedSlot').innerHTML = tplFeaturedMain(featured[0]);
-      document.getElementById('heroSubSlot').innerHTML = featured.slice(1, 3).map(tplFeaturedSub).join('') +
-        `<div class="d-none"></div>`;
-      // stack the two sub cards with gap
-      document.getElementById('heroSubSlot').style.display = 'grid';
-      document.getElementById('heroSubSlot').style.gap = '12px';
-      document.getElementById('heroSubSlot').style.gridTemplateRows = '1fr 1fr';
-    }
-
-    function renderLatest() {
-      const latest = [...NEWS].slice(-8).reverse();
-      document.getElementById('latestNewsSlot').innerHTML = latest.map(tplStandard).join('');
-    }
-
-
-    function renderNational() {
-      document.getElementById('nationalSlot').innerHTML = byCategory('national').map(tplStandard).join('');
-    }
-
-    function renderRowSection(slotId, cat) {
-      const items = byCategory(cat, 4);
-      document.getElementById(slotId).innerHTML = items.map(item => `<div class="col-12 col-sm-6 col-lg-3">${tplStandard(item)}</div>`).join('');
-    }
-
-
-    function renderTicker() {
-      const breaking = NEWS.filter(x => x.isBreaking);
-      const pool = breaking.length ? breaking : NEWS.slice(0, 5);
-      const track = document.getElementById('tickerTrack');
-      const sep = '<span aria-hidden="true" style="opacity:.6;">●</span>';
-      const items = pool.map(item => `<a href="#">${item.headline}</a>`).join(sep);
-      // duplicate content back-to-back so the loop reads seamlessly
-      track.innerHTML = items + sep + items;
-
-      document.getElementById('tickerClose').addEventListener('click', () => {
-        document.getElementById('tickerWrap').style.display = 'none';
-      });
-    }
-
-    /* ============================================================
-       Misc interactions
-       ============================================================ */
-
-    function initBackToTop() {
-      const btn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        btn.classList.toggle('show', window.scrollY > 500);
-      });
-      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        <a href="article.html" class="card-mpb hover-lift text-decoration-none">
+          <div class="thumb">
+            <img src="${item.image}" alt="${item.headline}" loading="lazy">
+            <span class="badge-cat ${catClass(item.category)}">${item.catLabel}</span>
+            ${item.isBreaking ? `<span class="badge-live"><span class="dot"></span>LIVE</span>` : ``}
+          </div>
+          <div class="body">
+            <h2 class="headline">${item.headline}</h2>
+            <p class="summary">${item.summary || ''}</p>
+            <div class="meta-row">
+              <span class="loc"><i class="bi bi-geo-alt"></i>${item.district}</span>
+              <span>${item.timestamp}</span>
+            </div>
+            <div class="meta-row">
+              <span class="stat-row"><span><i class="bi bi-eye-fill"></i> ${fmtNum(item.views)}</span></span>
+            </div>
+          </div>
+        </a>`;
     }
 
     function setTodayDate() {
@@ -1496,24 +1348,49 @@
       el.textContent = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
     }
 
-    /* ============================================================
-       Init
-       ============================================================ */
+    function renderTicker() {
+      const breaking = NEWS.filter(x => x.isBreaking);
+      const pool = breaking.length ? breaking : NEWS.slice(0, 5);
+      const track = document.getElementById('tickerTrack');
+      const sep = '<span aria-hidden="true" style="opacity:.6;">●</span>';
+      const items = pool.map(item => `<a href="article.html">${item.headline}</a>`).join(sep);
+      track.innerHTML = items + sep + items;
+      document.getElementById('tickerClose').addEventListener('click', () => {
+        document.getElementById('tickerWrap').style.display = 'none';
+      });
+    }
+
+    function initBackToTop() {
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => btn.classList.toggle('show', window.scrollY > 500));
+      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    function renderCategory() {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get('category') || 'all';
+      const category = Object.prototype.hasOwnProperty.call(CATEGORY_META, requested) ? requested : 'all';
+      const meta = CATEGORY_META[category];
+      const items = category === 'all' ? [...NEWS].sort((a, b) => b.views - a.views) : NEWS.filter(x => x.category === category);
+
+      document.getElementById('categoryTitle').textContent = meta.title;
+      document.getElementById('categoryDescription').textContent = meta.description;
+      document.getElementById('categoryCount').textContent = `${items.length} खबरें`;
+      document.getElementById('categoryNewsSlot').innerHTML = items.length
+        ? items.map(tplStandard).join('')
+        : '<div class="col-12"><div class="alert alert-light border">इस श्रेणी में अभी कोई खबर उपलब्ध नहीं है।</div></div>';
+
+      document.querySelectorAll('.category-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.category === category);
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       setTodayDate();
       renderTicker();
-      renderHero();
-      renderLatest();
-      renderNational();
-      renderRowSection('politicsSlot', 'politics');
-      renderRowSection('crimeSlot', 'crime');
-      renderRowSection('educationSlot', 'education');
-      renderRowSection('businessSlot', 'business');
-      renderRowSection('sportsSlot', 'sports');
-      renderRowSection('entertainmentSlot', 'entertainment');
+      renderCategory();
       initBackToTop();
     });
   </script>
 </body>
-
 </html>
